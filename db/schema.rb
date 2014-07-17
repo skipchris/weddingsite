@@ -11,9 +11,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140717081249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ruby_wedding_courses", force: true do |t|
+    t.string   "name"
+    t.integer  "menu_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ruby_wedding_courses", ["menu_id"], name: "index_ruby_wedding_courses_on_menu_id", using: :btree
+
+  create_table "ruby_wedding_dishes", force: true do |t|
+    t.string   "name"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ruby_wedding_dishes", ["course_id"], name: "index_ruby_wedding_dishes_on_course_id", using: :btree
+
+  create_table "ruby_wedding_guests", force: true do |t|
+    t.string   "firstname"
+    t.string   "surname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ruby_wedding_invitations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ruby_wedding_invitations_ruby_wedding_guests", force: true do |t|
+    t.integer "invitation_id", null: false
+    t.integer "guest_id",      null: false
+  end
+
+  create_table "ruby_wedding_menu_choices", force: true do |t|
+    t.integer  "guest_id"
+    t.integer  "dish_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ruby_wedding_menu_choices", ["dish_id"], name: "index_ruby_wedding_menu_choices_on_dish_id", using: :btree
+  add_index "ruby_wedding_menu_choices", ["guest_id"], name: "index_ruby_wedding_menu_choices_on_guest_id", using: :btree
+
+  create_table "ruby_wedding_menus", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
