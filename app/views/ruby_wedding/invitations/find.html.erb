@@ -1,0 +1,5 @@
+<% @invitations.each do |inv| %>
+  <%= inv.guests.first.firstname %> and
+  <%= inv.guests.second.firstname %>
+  <%= link_to "RSVP", ruby_wedding.edit_invitation_path(inv) %>
+<% end %>
