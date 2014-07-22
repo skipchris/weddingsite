@@ -27,6 +27,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'byebug'
 end
 
 # Use ActiveModel has_secure_password
@@ -36,5 +37,4 @@ end
 # gem 'unicorn'
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
 
