@@ -1,12 +1,22 @@
-<div class="page-header">
-  <h1>Totes getting married!</h1>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <h1><span class="bigword">Frances Abigail McKenna <span class="amp">&amp;</span></span> <span class="bigword">Chris Stainthorpe</span></h1>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p>Baltic Centre for Contemporary Art • October 11th 2014</p>
+      </div>
+    </div>
+    <div class="row">
+      <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'col-md-6 form-inline' do %>
+        <h2>RSVP</h2>
+        <div class="form-group">
+          <label class="control-label sr-only">Enter your surname:</label>
+            <%= text_field_tag :surname, "", class: 'form-control',  placeholder: "Your surname" %>
+        </div>
+        <%= submit_tag "RSVP", class: 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
 </div>
-<ul class="nav nav-pills">
-  <li><%= link_to "Venue and Directions", venue_path %></li>
-</ul>
-
-<%= form_tag ruby_wedding.find_invitations_path, method: :get do %>
-RSVP! Enter your surname:
-<%= text_field_tag :surname %>
-<%= submit_tag %>
-<% end %>

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   mount RubyWedding::Engine, at: "/"
-
   root 'pages#home'
 
   get '/venue-directions', to: 'pages#venue', as: 'venue'
