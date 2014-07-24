@@ -1,0 +1,38 @@
+<%= form_for @invitation, html: { class: 'row'} do |f| %>
+
+  <h1 class="col-md-12 text-center"><%= @invitation.guests.map { |g| g.fullname }.join(" and ") %></h1>
+  <%= f.fields_for :guests do |gff| %>
+  <div class="col-md-6">
+    <h2><%= gff.object.fullname %></h2>
+    <div class="form-group">
+      <h3>Coming?</h3>
+      <label class="radio-inline">
+        <%= gff.radio_button :rsvp, "Yes" %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= gff.radio_button :rsvp, "No" %> No
+      </label>
+    </div>
+      <h3>Menu Choices</h3>
+      <% gff.object.menu_choices.each do |menu_choice| %>
+        <%= gff.fields_for :menu_choices, menu_choice do |mcff| %>
+          <h4><%= menu_choice.course.name %></h4>
+          <div class="form-group">
+
+              <%= mcff.collection_radio_buttons :dish_id, RubyWedding::Dish.where(course_id: menu_choice.course_id), :id, :name do |bil| %>
+                <div class="radio">
+                  <label>
+                    <%= bil.radio_button %>
+                    <%= bil.label %>
+                  </label>
+                </div>
+              <% end %>
+
+          </div>
+          <%= mcff.hidden_field :course_id %>
+        <% end %>
+      <% end %>
+      </div>
+  <% end %>
+  <p><%= f.button "RSVP", class: 'btn btn-success btn-lg btn-block' %></p>
+<% end %>

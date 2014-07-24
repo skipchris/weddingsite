@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>Awkward!</h1>
+  <p>Sorry, we couldn’t find your invitation.</p>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <p>If you have received an invitation, this is probably our fault!</p>
+    <p>Maybe we spelt your name wrong. Or maybe you typed it wrong?</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+  <p>If you’ve made a typo, try again&hellip;</p>
+  <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'form-inline' do %>
+    <div class="form-group">
+      <label class="control-label sr-only" for="surname">Enter your surname:</label>
+        <%= text_field_tag :surname, params[:surname], class: 'form-control input-lg',  placeholder: "Your surname", style: "width: 100%" %>
+    </div>
+    <%= submit_tag "RSVP", class: 'btn btn-success btn-lg' %>
+  <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+  <br>
+    <p>Or if you think it’s definitely our fault, get in touch with Chris by
+    mail: <a href="mailto:chris@randomcat.co.uk">chris@randomcat.co.uk</a> or phone: 07855 388 137. Sorry.</p>
+  </div>
+</div>

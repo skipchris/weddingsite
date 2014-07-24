@@ -9,13 +9,12 @@
       </div>
     </div>
     <div class="row">
-      <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'col-md-6 form-inline' do %>
-        <h2>RSVP</h2>
-        <div class="form-group">
-          <label class="control-label sr-only">Enter your surname:</label>
-            <%= text_field_tag :surname, "", class: 'form-control',  placeholder: "Your surname" %>
+      <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'form-inline' do %>
+        <div class="form-group col-md-3">
+          <label class="control-label sr-only" for="surname">Enter your surname:</label>
+            <%= text_field_tag :surname, "", class: 'form-control input-lg',  placeholder: "Your surname", style: "width: 100%" %>
         </div>
-        <%= submit_tag "RSVP", class: 'btn btn-success' %>
+        <%= submit_tag "RSVP", class: 'btn btn-success btn-lg' %>
       <% end %>
     </div>
   </div>

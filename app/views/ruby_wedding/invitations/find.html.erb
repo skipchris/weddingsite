@@ -1,5 +1,21 @@
-<% @invitations.each do |inv| %>
-  <%= inv.guests.first.firstname %> and
-  <%= inv.guests.second.firstname %>
-  <%= link_to "RSVP", ruby_wedding.edit_invitation_path(inv) %>
-<% end %>
+<div class="page-header">
+  <h1>We found a few of you&hellip;</h1>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-striped table-hover">
+      <tbody>
+        <% @invitations.each do |inv| %>
+          <tr>
+            <td>
+              <%= inv.guests.all.map(&:fullname).to_sentence(last_word_connector: ' & ') %>
+            </td>
+            <td>
+              <%= link_to "RSVP", ruby_wedding.edit_invitation_path(inv) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
