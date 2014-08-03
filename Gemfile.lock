@@ -1,5 +1,6 @@
-PATH
-  remote: /Users/chris/Documents/code/ruby_wedding
+GIT
+  remote: git://github.com/skipchris/ruby_wedding.git
+  revision: 907e756c48f6a5a3a3baa7b62738ee08e5e39006
   specs:
     ruby_wedding (0.0.1)
       rails (~> 4.1.1)

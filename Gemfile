@@ -21,7 +21,7 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-gem 'ruby_wedding', path: '/Users/chris/Documents/code/ruby_wedding'
+gem 'ruby_wedding', github: 'skipchris/ruby_wedding' #path: '/Users/chris/Documents/code/ruby_wedding'
 
 group :development, :test do
   gem 'spring'
