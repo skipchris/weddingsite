@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'ruby_wedding', github: 'skipchris/ruby_wedding' #path: '/Users/chris/Documents/code/ruby_wedding'
+gem 'rails_12factor', group: :production
+
 
 group :development, :test do
   gem 'spring'
