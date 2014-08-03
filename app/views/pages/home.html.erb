@@ -1,21 +1,57 @@
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <h1><span class="bigword">Frances Abigail McKenna <span class="amp">&amp;</span></span> <span class="bigword">Chris Stainthorpe</span></h1>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-7 inner">
+        <p>The wedding of</p>
+        <h1>
+          <span class="bigword">Frances Abigail McKenna <span class="amp">&amp;</span></span>
+          <span class="bigword">Christopher Stainthorpe</span>
+        </h1>
         <p>Baltic Centre for Contemporary Art • October 11th 2014</p>
-      </div>
-    </div>
-    <div class="row">
-      <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'form-inline' do %>
-        <div class="form-group col-md-3">
-          <label class="control-label sr-only" for="surname">Enter your surname:</label>
-            <%= text_field_tag :surname, "", class: 'form-control input-lg',  placeholder: "Your surname", style: "width: 100%" %>
+        <div class="row">
+          <%= form_tag ruby_wedding.find_invitations_path, method: :get, class: 'form col-md-12' do %>
+            <div class="form-group">
+              <label for="surname">Coming?</label>
+              <%= text_field_tag :surname, "", class: 'form-control input-lg',  placeholder: "Your surname", style: "width: 100%" %>
+            </div>
+            <div class="form-group">
+              <%= submit_tag "RSVP", class: 'btn btn-success btn-lg btn-block' %>
+            </div>
+          <% end %>
         </div>
-        <%= submit_tag "RSVP", class: 'btn btn-success btn-lg' %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Venue &amp; Directions</h2>
+      <div id="map"></div>
+      map
+      Accommodation
+      Transport (there and back - taxis)
+      <h2>Where to stay</h2>
+    </div>
+    <div class="col-md-4">
+      <h2>Timings</h2>
+      <dl class="dl-horizontal">
+        <dt>3:00</dt><dd> Start arriving</dd>
+        <dt>3:30</dt><dd> Ceremony</dd>
+        <dt>8:15</dt><dd> Evening reception</dd>
+        <dt>1:30am</dt><dd> Hometime</dd>
+      </ol>
+      <h2>Contact</h2>
+      <dl class="dl-horizontal">
+        <dt>Chris</dt>
+        <dd><a href="mailto:chris@randomcat.co.uk">chris@randomcat.co.uk</a></dd>
+        <dd>07855 388 137</dd>
+        <dt style="font-family: Arial !important;">Frances <i class="fa fa-paw"></i></dt>
+        <dd><a href="mailto:frances_mckenna@hotmail.com">frances_mckenna@hotmail.com</a></dd>
+        <dd>07769 181 276</dd>
+      </dl>
+    </div>
+  </div>
+</div>
+

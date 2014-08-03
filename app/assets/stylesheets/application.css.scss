@@ -12,6 +12,16 @@
  *
  */
 
+$brand-success: #62b881;
+$turq:      #5ACDCD;
+$peach:     #F69992;
+$gold:      #DAC86A;
+$palepink:  #EDD4D1;
+
+$link-color:          $peach;
+$input-border-focus:  $turq;
+$text-color:          #666;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "layout";

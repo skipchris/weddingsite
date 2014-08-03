@@ -8,7 +8,7 @@
         <% @invitations.each do |inv| %>
           <tr>
             <td>
-              <%= inv.guests.all.map(&:fullname).to_sentence(last_word_connector: ' & ') %>
+              <%= inv.guest_list %>
             </td>
             <td>
               <%= link_to "RSVP", ruby_wedding.edit_invitation_path(inv) %>
