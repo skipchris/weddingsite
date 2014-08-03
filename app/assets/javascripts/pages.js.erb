@@ -1,0 +1,97 @@
+$(function(e) {
+
+  var map; var infowindow;
+  var data_lists = { 'car-parks': [], 'hotels': [] }
+
+  function handle_coming_toggle (e) {
+    var $tgt = $(e.target);
+    var $container = $tgt.parents('.guest');
+    if($tgt.hasClass('coming-yes')) {
+      $('.menu-choices', $container).show('500');
+    } else if($tgt.hasClass('coming-no')){
+      $('.menu-choices', $container).hide('500');
+    }
+  };
+
+  var car_parks = [
+    { name:   "<h4>Mill Street Car Park (Pay and Display)</h4><p>This is nearby</p>", pos: { lat: 54.968255, lng: -1.598877 } }
+    , { name: "<h4>BALTIC Car Park (Pay on Exit)</h4><p>This is best if you have accessibility problems, but is not cheap</p>", pos: { lat: 54.969300, lng: -1.596164 } }
+    , { name: "<h4>Dean Street Car Park (Pay and Display)</h4><p>A bit more walk, but cheaper</p>", pos: { lat: 54.970240, lng: -1.609051 } }
+    , { name: "<h4>Manors Car Park (Pay and Display)</h4><p>A bit more walk, but cheaper</p>", pos: { lat: 54.972245, lng: -1.606784 } }
+    , { name: "<h4>On-street parking</h4><p>Very dodgy, but free.</p>", pos: { lat: 54.968091, lng: -1.594093 } }
+  ];
+
+  var hotels = [
+    {name: "Jurys Inn", pos: {lat: 54.969371, lng:-1.594737}}
+    , {name: "Travelodge", pos: {lat: 54.970664, lng: -1.602784}}
+    , {name: "Malmaison", pos: {lat: 54.970787, lng: -1.600445}}
+    , {name: "Hilton", pos: {lat: 54.966365, lng: -1.605616}}
+    , {name: "Grey Street", pos: {lat: 54.970970, lng: -1.610505}}
+  ];
+
+  function init_maps() {
+    // Create Map
+    var mapOptions = {center: { lat: 54.969256, lng: -1.598138 }, zoom: 15 };
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    // Empty infowindow to be filled by markers
+    infowindow = new google.maps.InfoWindow();
+
+    // Colour it in.
+    map.setOptions({styles:
+      [{
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "color": "#5ACDCD" }
+        ]
+      }]
+    });
+  };
+
+  function add_markers(marker_set, icon) {
+
+    if(data_lists[marker_set].length === 0) {
+      parse_list_to_data(marker_set);
+    };
+
+    $.each(data_lists[marker_set], function(i) {
+      var obj = data_lists[marker_set][i];
+      var marker = new google.maps.Marker({
+          position: obj.pos,
+          map: map,
+          animation: google.maps.Animation.DROP,
+          title: obj.name,
+          icon: icon
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(obj.content);
+        infowindow.open(map, marker);
+      });
+    });
+  };
+
+  function parse_list_to_data(list) {
+    var stash = [];
+    $('#' + list +  '-list li').each(function (idx, elm) {
+      $elm = $(elm)
+      stash.push({
+          title: $('h4', $elm).text()
+        , content: $elm.html()
+        , pos: { lat: $elm.data('lat'), lng: $elm.data('lng') }
+      })
+    });
+    data_lists[list] = stash;
+  };
+
+  google.maps.event.addDomListener(window, 'load', init_maps);
+
+  $('body').on('click', '.coming-toggle',  handle_coming_toggle)
+    .on('click', '#show-car-parks', function(e) { e.preventDefault(); add_markers('car-parks', '<%= asset_path('car.png') %>'); })
+    .on('click', '#show-hotels', function(e) { e.preventDefault(); add_markers('hotels', '<%= asset_path('hotel.png') %>'); });
+});
+
+
+
+

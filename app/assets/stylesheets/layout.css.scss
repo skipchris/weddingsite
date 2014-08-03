@@ -11,17 +11,13 @@
 
 }
 
-// $turq:      #5ACDCD;
-// $peach:     #F69992;
-// $gold:      #DAC86A;
-// $palepink:  #EDD4D1;
-// $green:     #62B881;
+
 $jumbogrey: #555;
 
 body { font-family: 'Nunito'; font-weight: 300; }
 h1, h2, h3 { font-family: adam; }
-h3 {  color: $peach; }
-h2 {  color: $turq; }
+h2, h3 {  color: $peach; }
+// h3 {  color: $turq; }
 h4 { color: $gold; }
 
 .jumbotron {
@@ -40,6 +36,6 @@ h4 { color: $gold; }
 #map { width: 100%; height: 400px; }
 
 .form-control { font-weight: 300; }
+.btn-link { font-weight: 300; }
 
 .menu-choices { display: none; }
-

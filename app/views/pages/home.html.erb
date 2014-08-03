@@ -27,12 +27,96 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h2>Venue &amp; Directions</h2>
+      <h2>Venue</h2>
       <div id="map"></div>
-      map
-      Accommodation
-      Transport (there and back - taxis)
-      <h2>Where to stay</h2>
+      <!-- <ul class="list-inline">
+        <li><i class="fa fa-car"></i><a id="show-car-parks" href="#" class="btn btn-lg btn-link"> Show Car Parks</a></li>
+        <li><i class="fa fa-hospital-o"></i><a id="show-hotels" href="#" class="btn btn-lg btn-link"> Show Hotels</a></li>
+      </ul> -->
+      <div class="row">
+        <div class="col-md-6">
+          <h3><i class="fa fa-hospital-o"></i> Hotels <button class="btn btn-default" id="show-hotels">Show on map &raquo;</button></h3>
+          <ul class="list-unstyled" id="hotels-list">
+            <li data-lat="54.969371" data-lng="-1.594737">
+              <h4>Jurys Inn</h4>
+              <p>
+                Right next door, and won’t be too pricey.
+                <a href="http://www.jurysinns.com/hotels/newcastle/gateshead" class="btn btn-link btn-xs">View their site &raquo;</a>
+              </p>
+            </li>
+            <li data-lat="54.970664" data-lng="-1.602784">
+              <h4>Travelodge</h4>
+              <p>Just over the Millenium Bridge, about 10 mins walk. Also won’t be too pricey!
+                <a href="http://www.travelodge.co.uk/hotels/214/Newcastle-Central-hotel" class="btn btn-link btn-xs">View their site &raquo;</a>
+              </p>
+            </li>
+            <li data-lat="54.970787" data-lng="-1.600445">
+              <h4>Malmaison</h4>
+              <p>
+                About a minute’s walk over the Millenium Bridge. Won’t be too cheap, but <strong>very</strong> luxurious.
+                <a href="http://www.travelodge.co.uk/hotels/214/Newcastle-Central-hotel" class="btn btn-link btn-xs">View their site &raquo;</a>
+              </p>
+            </li>
+            <li data-lat="54.966365" data-lng="-1.605616">
+              <h4>Hilton</h4>
+              <p>
+                Another luxury hotel if you want to treat yourself. About 5 minutes walk along the River Tyne.
+                <a href="http://www3.hilton.com/en/hotels/united-kingdom/hilton-newcastle-gateshead-NCLHIHI/index.html">View their site &raquo;</a>
+              </p>
+            </li>
+            <li data-lat="54.970970" data-lng="-1.610505">
+              <h4>Grey Street</h4>
+              <p>
+                ‘Boutique’ hotel in town. About 15 minutes walk, but if you’d rather stay between the venue and the
+                city centre, this could be good.
+                <a href="http://www.greystreethotel.co.uk/">View their site &raquo;</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3><i class="fa fa-car"></i> Car Parks <button class="btn btn-default" id="show-car-parks">Show on map &raquo;</button></h3>
+          <ul class="list-unstyled" id="car-parks-list">
+            <li data-lat="54.968255" data-lng="-1.598877">
+              <h4>Mill Road Car Park (Pay and Display)</h4>
+              <p>
+                Right next door, but not ideal if you have difficulty walking because it’s up a hill.<br>
+                <b>Accessible</b> 24 hours.<br> <b>Charging period</b> 8.00am - 11.00pm every day.<br>
+                <b>All day parking</b> £5.40
+              </p>
+            </li>
+            <li data-lat="54.9693" data-lng="-1.596164">
+              <h4>BALTIC Car Park (Pay on Exit)</h4>
+              <p>Right next door, pay on exit, but cash-only and <b>costs £1.00 per hour</b>.</p>
+            </li>
+            <li data-lat="54.97024" data-lng="-1.609051">
+              <h4>Dean Street Car Park (Pay and Display)</h4>
+              <p>
+                A bit more of a walk, but much better value than Gateshead.<br>
+                <b>Accessible</b> 7am - Midnight<br>
+                <b>Charging period</b> 8am - 5pm<br>
+                <b>Cost</b> £1.30/hour on Saturday, and £3/all day on Sunday. (if you’re leaving your car overnight)
+              </p>
+            </li>
+            <li data-lat="54.972245" data-lng="-1.606784">
+              <h4>Manors Car Park (Pay and Display)</h4>
+              <p>
+                A bit more of a walk, but much better value than Gateshead.<br>
+                <b>Accessible</b> 7am - Midnight<br>
+                <b>Charging period</b> 8am - 5pm<br>
+                <b>Cost</b> 70p/hour on Saturday, and £3/all day on Sunday. (if you’re leaving your car overnight)
+              </p>
+            </li>
+            <li data-lat="54.968091" data-lng="-1.594093">
+              <h4>On-street parking</h4>
+              <p>
+                If you’re feeling brave, there’s some unrestricted on-street parking in this area.
+                Allow about 5-10 mins walk to BALTIC, depending on where you end up.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-md-4">
       <h2>Timings</h2>
