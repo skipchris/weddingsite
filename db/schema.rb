@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723204343) do
+ActiveRecord::Schema.define(version: 20140802160359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140723204343) do
     t.integer  "menu_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order",      default: 0, null: false
   end
 
   add_index "ruby_wedding_courses", ["menu_id"], name: "index_ruby_wedding_courses_on_menu_id", using: :btree
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140723204343) do
     t.datetime "updated_at"
     t.boolean  "rsvp"
     t.integer  "invitation_id"
+    t.boolean  "child",         default: false, null: false
   end
 
   add_index "ruby_wedding_guests", ["invitation_id"], name: "index_ruby_wedding_guests_on_invitation_id", using: :btree
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140723204343) do
   create_table "ruby_wedding_invitations", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "notes",      limit: 2000
   end
 
   create_table "ruby_wedding_menu_choices", force: true do |t|
