@@ -5,34 +5,28 @@ $(function(e) {
 
   function handle_coming_toggle (e) {
     var $tgt = $(e.target);
+    if($tgt[0].tagName === 'INPUT' || $tgt[0].tagName === 'input') {
+      $tgt = $tgt.parent('label');
+    }
     var $container = $tgt.parents('.guest');
     if($tgt.hasClass('coming-yes')) {
       $('.menu-choices', $container).show('500');
-    } else if($tgt.hasClass('coming-no')){
+    } else {
       $('.menu-choices', $container).hide('500');
     }
   };
 
-  var car_parks = [
-    { name:   "<h4>Mill Street Car Park (Pay and Display)</h4><p>This is nearby</p>", pos: { lat: 54.968255, lng: -1.598877 } }
-    , { name: "<h4>BALTIC Car Park (Pay on Exit)</h4><p>This is best if you have accessibility problems, but is not cheap</p>", pos: { lat: 54.969300, lng: -1.596164 } }
-    , { name: "<h4>Dean Street Car Park (Pay and Display)</h4><p>A bit more walk, but cheaper</p>", pos: { lat: 54.970240, lng: -1.609051 } }
-    , { name: "<h4>Manors Car Park (Pay and Display)</h4><p>A bit more walk, but cheaper</p>", pos: { lat: 54.972245, lng: -1.606784 } }
-    , { name: "<h4>On-street parking</h4><p>Very dodgy, but free.</p>", pos: { lat: 54.968091, lng: -1.594093 } }
-  ];
-
-  var hotels = [
-    {name: "Jurys Inn", pos: {lat: 54.969371, lng:-1.594737}}
-    , {name: "Travelodge", pos: {lat: 54.970664, lng: -1.602784}}
-    , {name: "Malmaison", pos: {lat: 54.970787, lng: -1.600445}}
-    , {name: "Hilton", pos: {lat: 54.966365, lng: -1.605616}}
-    , {name: "Grey Street", pos: {lat: 54.970970, lng: -1.610505}}
-  ];
 
   function init_maps() {
     // Create Map
     var mapOptions = {center: { lat: 54.969256, lng: -1.598138 }, zoom: 15 };
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var map_canvas = $('#map');
+
+    if(map_canvas.length == 0) {
+      return false;
+    }
+
+    map = new google.maps.Map(map_canvas[0], mapOptions);
 
     // Empty infowindow to be filled by markers
     infowindow = new google.maps.InfoWindow();
