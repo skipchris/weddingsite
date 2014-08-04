@@ -19,10 +19,10 @@
       <div class="form-group">
         <h3>Coming?</h3>
         <label class="radio-inline coming-yes coming-toggle">
-          <%= gff.radio_button :rsvp, "Yes", class: '' %> Yes
+          <%= gff.radio_button :rsvp, true, class: 'radio-yes' %> Yes
         </label>
         <label class="radio-inline coming-no coming-toggle">
-          <%= gff.radio_button :rsvp, "No", class: '' %> No
+          <%= gff.radio_button :rsvp, false, class: 'radio-no' %> No
         </label>
       </div>
       <% unless gff.object.child? %>
