@@ -4,7 +4,7 @@
 <p class="lead">
   Thanks for replying! If you’re coming, let us know what you’d like to eat. Any
   dietary requirements, or anything else we should know about, just write it in
-  the ‘notes’ field below!
+  the ‘notes’ field below.
 </p>
 <% if @invitation.contains_children? %>
   <p>
@@ -36,7 +36,11 @@
                   <div class="radio">
                     <label>
                       <%= bil.radio_button %>
-                      <%= bil.label %>
+                      <%= bil.label do
+                        str = "#{bil.object.name}"
+                        str << ' <span class="vege">(v)</span>' if bil.object.vegetarian?
+                        str.html_safe
+                      end %>
                     </label>
                   </div>
                 <% end %>
