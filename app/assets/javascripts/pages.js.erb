@@ -16,6 +16,17 @@ $(function(e) {
     }
   };
 
+  function maybe_hide_menu_choices () {
+    $('div.guest').each(function (idx, elm) {
+      $elm = $(elm);
+      $selected_checkboxes = $(':checked', $elm);
+      if($selected_checkboxes.length === 0 // If nothing is selected
+        || $selected_checkboxes.hasClass('radio-no') // Or at least the 'no' check is selected
+      ) {
+        $('.menu-choices', $elm).hide();
+      }
+    });
+  };
 
   function init_maps() {
     // Create Map
@@ -84,6 +95,8 @@ $(function(e) {
   $('body').on('click', '.coming-toggle',  handle_coming_toggle)
     .on('click', '#show-car-parks', function(e) { e.preventDefault(); add_markers('car-parks', '<%= asset_path('car.png') %>'); })
     .on('click', '#show-hotels', function(e) { e.preventDefault(); add_markers('hotels', '<%= asset_path('hotel.png') %>'); });
+
+  maybe_hide_menu_choices();
 });
 
 
