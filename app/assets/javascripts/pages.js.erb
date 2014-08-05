@@ -34,7 +34,8 @@
 
 var WeddingMap = (function () {
   var map; var infowindow;
-  var data_lists = { 'car-parks': [], 'hotels': [] }
+  var data_lists   = { 'car-parks': [], 'hotels': [] };
+  var marker_lists = { 'car-parks': [], 'hotels': [] };
 
   function add_markers(marker_set, icon) {
 
@@ -52,11 +53,18 @@ var WeddingMap = (function () {
           icon: icon
       });
 
+      marker_lists[marker_set].push(marker);
+
       google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(obj.content);
         infowindow.open(map, marker);
       });
     });
+  };
+
+  function remove_markers(marker_set) {
+    $.each(marker_lists[marker_set], function(idx) { marker_lists[marker_set][idx].setMap(null) });
+    marker_lists[marker_set].length = 0;
   };
 
   function parse_list_to_data(list) {
@@ -70,6 +78,20 @@ var WeddingMap = (function () {
       })
     });
     data_lists[list] = stash;
+  };
+
+  function handle_map_toggler (e) {
+    $tgt = $(e.target);
+
+    if($tgt.data('show-hide') === 'show') {
+      $tgt.text("Hide on map »");
+      $tgt.data('show-hide', 'hide');
+      add_markers($tgt.data('markers'), $tgt.data('marker-icon'));
+    } else {
+      $tgt.text("Show on map »");
+      $tgt.data('show-hide', 'show');
+      remove_markers($tgt.data('markers'));
+    }
   };
 
   function init_maps() {
@@ -97,8 +119,8 @@ var WeddingMap = (function () {
       }]
     });
 
-    $('body').on('click', '#show-car-parks', function(e) { e.preventDefault(); add_markers('car-parks', '<%= asset_path('car.png') %>'); })
-      .on('click', '#show-hotels', function(e) { e.preventDefault(); add_markers('hotels', '<%= asset_path('hotel.png') %>'); });
+    $('body').on('click', '#show-car-parks', function(e) { e.preventDefault(); handle_map_toggler(e); })
+      .on('click', '#show-hotels', function(e) { e.preventDefault(); handle_map_toggler(e); });
   };
   return {
     init : init_maps
