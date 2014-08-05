@@ -1,17 +1,21 @@
 <div class="page-header">
   <h1><%= @invitation.guest_list %></h1>
 </div>
-<p class="lead">
-  Thanks for replying! If you’re coming, let us know what you’d like to eat. Any
-  dietary requirements, or anything else we should know about, just write it in
-  the ‘notes’ field below.
-</p>
-<% if @invitation.contains_children? %>
-  <p>
-    We haven’t finalised the kids’ menu yet, but again, tell us anything we
-    need to know in the ‘notes’ field.
-  </p>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <p class="lead">
+      Thanks for replying! If you’re coming, let us know what you’d like to eat. Any
+      dietary requirements, or anything else we should know about, just write it in
+      the ‘notes’ field below.
+    </p>
+    <% if @invitation.contains_children? %>
+      <p>
+        We haven’t finalised the kids’ menu yet, but again, tell us anything we
+        need to know in the ‘notes’ field.
+      </p>
+    <% end %>
+  </div>
+</div>
 <%= form_for @invitation, html: { class: 'row'} do |f| %>
   <%= f.fields_for :guests do |gff| %>
     <div class="col-md-<%= inv_grid_cols(@invitation.guests) %> guest">
@@ -25,7 +29,11 @@
           <%= gff.radio_button :rsvp, false, class: 'radio-no' %> No
         </label>
       </div>
-      <% unless gff.object.child? %>
+      <% if gff.object.child? %>
+        <div class="menu-choices">
+          <p class="text-muted">No choices to worry about <i class="fa fa-smile-o"></i></p>
+        </div>
+      <% else %>
         <div class="menu-choices">
         <h3>Menu Choices</h3>
           <% gff.object.menu_choices.each do |menu_choice| %>
@@ -52,14 +60,11 @@
       <% end %>
     </div>
   <% end %>
-  <div class="row">
-    <div class="col-md-12 form-group">
-      <%= f.text_area :notes, class: 'form-control', rows: 4, placeholder: "Notes" %>
-    </div>
+  <div class="col-md-12 form-group">
+    <%= f.text_area :notes, class: 'form-control', rows: 4, placeholder: "Notes" %>
   </div>
-  <div class="row">
-    <div class="col-md-12 form-group">
-      <p><%= f.button "RSVP", class: 'btn btn-success btn-lg btn-block' %></p>
-    </div>
+  <div class="col-md-12 form-group">
+    <p><%= f.button "RSVP", class: 'btn btn-success btn-lg btn-block' %></p>
   </div>
+
 <% end %>
