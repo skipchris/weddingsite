@@ -17,4 +17,5 @@
 
 # We used this to generate the guestlist.
 lib/tasks/weddingsite.rake
+weddingsite.sql
 
