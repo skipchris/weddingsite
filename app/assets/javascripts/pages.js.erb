@@ -1,7 +1,4 @@
-$(function(e) {
-
-  var map; var infowindow;
-  var data_lists = { 'car-parks': [], 'hotels': [] }
+; var WeddingSite = (function() {
 
   function handle_coming_toggle (e) {
     var $tgt = $(e.target);
@@ -28,31 +25,16 @@ $(function(e) {
     });
   };
 
-  function init_maps() {
-    // Create Map
-    var mapOptions = {center: { lat: 54.969256, lng: -1.598138 }, zoom: 15 };
-    var map_canvas = $('#map');
-
-    if(map_canvas.length == 0) {
-      return false;
-    }
-
-    map = new google.maps.Map(map_canvas[0], mapOptions);
-
-    // Empty infowindow to be filled by markers
-    infowindow = new google.maps.InfoWindow();
-
-    // Colour it in.
-    map.setOptions({styles:
-      [{
-        "featureType": "water",
-        "elementType": "geometry.fill",
-        "stylers": [
-          { "color": "#5ACDCD" }
-        ]
-      }]
-    });
+  return {
+          handle_coming_toggle : handle_coming_toggle
+    , maybe_hide_menu_choices : maybe_hide_menu_choices
   };
+
+})();
+
+var WeddingMap = (function () {
+  var map; var infowindow;
+  var data_lists = { 'car-parks': [], 'hotels': [] }
 
   function add_markers(marker_set, icon) {
 
@@ -90,13 +72,47 @@ $(function(e) {
     data_lists[list] = stash;
   };
 
-  google.maps.event.addDomListener(window, 'load', init_maps);
+  function init_maps() {
+    // Create Map
+    var mapOptions = {center: { lat: 54.969256, lng: -1.598138 }, zoom: 15 };
+    var map_canvas = $('#map');
 
-  $('body').on('click', '.coming-toggle',  handle_coming_toggle)
-    .on('click', '#show-car-parks', function(e) { e.preventDefault(); add_markers('car-parks', '<%= asset_path('car.png') %>'); })
-    .on('click', '#show-hotels', function(e) { e.preventDefault(); add_markers('hotels', '<%= asset_path('hotel.png') %>'); });
+    if(map_canvas.length == 0) {
+      return false;
+    }
 
-  maybe_hide_menu_choices();
+    map = new google.maps.Map(map_canvas[0], mapOptions);
+
+    // Empty infowindow to be filled by markers
+    infowindow = new google.maps.InfoWindow();
+
+    // Colour it in.
+    map.setOptions({styles:
+      [{
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "color": "#5ACDCD" }
+        ]
+      }]
+    });
+
+    $('body').on('click', '#show-car-parks', function(e) { e.preventDefault(); add_markers('car-parks', '<%= asset_path('car.png') %>'); })
+      .on('click', '#show-hotels', function(e) { e.preventDefault(); add_markers('hotels', '<%= asset_path('hotel.png') %>'); });
+  };
+  return {
+    init : init_maps
+  };
+
+})();
+
+$(document).on('page:change', function (e) {
+
+  google.maps.event.addDomListener(window, 'load', WeddingMap.init);
+
+  $('body').on('click', '.coming-toggle',  WeddingSite.handle_coming_toggle);
+
+  WeddingSite.maybe_hide_menu_choices();
 });
 
 
