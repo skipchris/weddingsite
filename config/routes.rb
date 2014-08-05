@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   mount RubyWedding::Engine, at: "/"
   root 'pages#home'
 
-  get '/venue-directions', to: 'pages#venue', as: 'venue'
-
   # root RubyWedding::Engine
 
   # The priority is based upon order of creation: first created -> highest priority.
