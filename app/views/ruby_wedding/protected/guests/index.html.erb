@@ -1,0 +1,38 @@
+<h1>Woo these people are our friends!</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Starters</th>
+      <th scope="col">Mains</th>
+      <th scope="col">Puds</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @guests.each do |guest| %>
+    <tr>
+      <th scope="row">
+        <%= guest.fullname %>
+      </th>
+      <td>
+        <%= guest.menu_choices[0].dish.name %>
+      </td>
+      <td>
+        <%= guest.menu_choices[1].dish.name %>
+      </td>
+      <td>
+        <%= guest.menu_choices[2].dish.name %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% # VIOLATE ALL THE MVC (for now) %>
+
+<ul>
+  <% RubyWedding::Dish.all.each do |dish| %>
+    <li><b><%= dish.name %></b> – <%= RubyWedding::MenuChoice.where(dish: dish).count %></li>
+  <% end %>
+</ul>
