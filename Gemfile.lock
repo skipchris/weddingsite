@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/skipchris/ruby_wedding.git
-  revision: ff871d076a3185a3628f5174cd7a11b8ab7ad389
+  revision: b8fc7f1c2ac9716c0170146259061a2847814005
   specs:
     ruby_wedding (0.0.1)
       rails (~> 4.1.1)
